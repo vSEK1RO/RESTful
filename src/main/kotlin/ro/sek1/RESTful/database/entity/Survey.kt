@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name="surveys")
-class Survey (
+data class Survey (
     @Column(length = 50, nullable = false)
     val title: String = "",
 

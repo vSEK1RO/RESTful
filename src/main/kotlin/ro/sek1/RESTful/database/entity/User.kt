@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name="users")
-class User (
+data class User (
     @Column(length = 20, nullable = false)
     val name: String = "",
 

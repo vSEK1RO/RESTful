@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name="surveyitems")
-class SurveyItem (
+data class SurveyItem (
     @ManyToOne
     val survey: Survey = Survey(),
 
