@@ -1,10 +1,8 @@
 package ro.sek1.RESTful.model
 
-import org.springframework.http.HttpStatus
-import java.util.Date
+import java.time.LocalDateTime
 
-open class Response (
+abstract class Response (
     var responder: String,
-    var time: Date,
-    var httpStatus: HttpStatus,
+    var time: LocalDateTime = LocalDateTime.now(),
 )
