@@ -7,10 +7,10 @@ import java.time.LocalDateTime
 @Table(name="surveys")
 data class Survey (
     @Column(length = 50, nullable = false)
-    val title: String = "",
+    var title: String = "",
 
     @Column(nullable = false)
-    val number_avaible: Long = 0,
+    var number_avaible: Long = 0,
 
     @OneToMany
     @JoinColumn(name = "survey_id")
@@ -19,13 +19,13 @@ data class Survey (
     //nullable
 
     @Column(columnDefinition = "TEXT")
-    val description: String? = "",
+    var description: String? = "",
 
     @Column(columnDefinition = "TEXT")
-    val image_url: String? = null,
+    var image_url: String? = null,
 
     @Column(columnDefinition = "timestamp")
-    val avaible_until: LocalDateTime? = null,
+    var avaible_until: LocalDateTime? = null,
 ){
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
