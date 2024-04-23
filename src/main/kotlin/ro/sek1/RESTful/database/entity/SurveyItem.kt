@@ -9,12 +9,12 @@ data class SurveyItem (
     val survey: Survey = Survey(),
 
     @Column(length = 50, nullable = false)
-    val title: String = "",
+    var title: String = "",
 
     //nullable
 
     @Column(columnDefinition = "TEXT")
-    val description: String? = null,
+    var description: String? = null,
 ){
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

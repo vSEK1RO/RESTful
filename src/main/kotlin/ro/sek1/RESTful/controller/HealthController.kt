@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 import ro.sek1.RESTful.service.HealthService
 
 @RestController
-@RequestMapping("/HealthService")
+@RequestMapping("/health")
 class HealthController (
     var healthService: HealthService,
 ){
