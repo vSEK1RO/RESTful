@@ -19,7 +19,7 @@ data class User (
     @Column(nullable = false)
     var email: String = "",
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     var role: UserRole = UserRole.USER,
 ) : UserDetails {
@@ -54,7 +54,7 @@ data class User (
         return true
     }
     override fun isCredentialsNonExpired(): Boolean {
-        return true
+        return true 
     }
     override fun isEnabled(): Boolean {
         return true

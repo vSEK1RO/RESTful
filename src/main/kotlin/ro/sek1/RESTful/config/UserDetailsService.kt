@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service
 import ro.sek1.RESTful.database.dao.UsersDao
 
 @Service
-class UserDetailsService : UserDetailsService {
-    @Autowired
-    lateinit var usersDao: UsersDao
+class UserDetailsService (
+    var usersDao: UsersDao,
+): UserDetailsService{
     override fun loadUserByUsername(username: String?): UserDetails {
         return usersDao.findByName(username?:"").orElseThrow{
             UsernameNotFoundException("User ${username} not found")
