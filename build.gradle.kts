@@ -35,7 +35,8 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-ui:1.8.0")
 	//JWT
 	implementation("io.jsonwebtoken:jjwt-api:0.12.5")
-	implementation("jakarta.xml.bind:jakarta.xml.bind-api:4.0.2")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5")
 }
 
 tasks.withType<KotlinCompile> {
