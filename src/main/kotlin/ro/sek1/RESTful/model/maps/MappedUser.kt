@@ -7,10 +7,12 @@ class MappedUser {
     var name: String = ""
     var email: String = ""
     var role: UserRole = UserRole.USER
+    var id: Long = 0
     fun fromEntity(user: User): MappedUser{
         name = user.name
         email = user.email
         role = user.role
+        id = user.id
         return this
     }
     fun toEntity(): User{

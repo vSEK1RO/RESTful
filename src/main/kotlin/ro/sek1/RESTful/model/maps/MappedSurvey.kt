@@ -10,12 +10,14 @@ class MappedSurvey {
     var image_url: String? = null
     var available_until: LocalDateTime? = null
     var items: MutableList<MappedSurveyItem> = mutableListOf()
+    var id: Long = 0
     fun fromEntity(survey: Survey): MappedSurvey{
         title = survey.title
         number_available = survey.number_available
         description = survey.description
         image_url = survey.image_url
         available_until = survey.available_until
+        id = survey.id
         items = survey.items.map{
             MappedSurveyItem().fromEntity(it)
         }.toMutableList()
