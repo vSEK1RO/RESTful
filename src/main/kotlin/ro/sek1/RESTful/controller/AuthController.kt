@@ -1,11 +1,9 @@
 package ro.sek1.RESTful.controller
 
-import org.springframework.http.ResponseEntity
-import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
-import ro.sek1.RESTful.model.request.AuthLoginRequest
-import ro.sek1.RESTful.model.request.AuthRegisterRequest
-import ro.sek1.RESTful.model.request.AuthRegoutRequest
+import ro.sek1.RESTful.model.request.auth.AuthLoginRequest
+import ro.sek1.RESTful.model.request.auth.AuthRegisterRequest
+import ro.sek1.RESTful.model.request.auth.AuthRegoutRequest
 import ro.sek1.RESTful.service.AuthService
 
 @RestController
@@ -14,19 +12,19 @@ class AuthController (
     var authService: AuthService,
 ){
     @PostMapping("/register")
-    fun authRegister(
+    fun register(
         @RequestBody request: AuthRegisterRequest
-    ) = authService.authRegister(request)
+    ) = authService.register(request)
     @PostMapping("/regout")
-    fun authRegister(
+    fun register(
         @RequestBody request: AuthRegoutRequest
-    ) = authService.authRegout(request)
+    ) = authService.regout(request)
     @PostMapping("/login")
-    fun authRegister(
+    fun login(
         @RequestBody request: AuthLoginRequest
-    ) = authService.authLogin(request)
+    ) = authService.login(request)
     @GetMapping("/logout")
-    fun authRegister(
+    fun logout(
         @RequestHeader("Authorization") token: String
-    ) = authService.authLogout(token)
+    ) = authService.logout(token)
 }

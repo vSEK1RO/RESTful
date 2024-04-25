@@ -5,8 +5,6 @@ import jakarta.persistence.*
 @Entity
 @Table(name="surveyitems")
 data class SurveyItem (
-    @ManyToOne
-    val survey: Survey = Survey(),
 
     @Column(length = 50, nullable = false)
     var title: String = "",
@@ -22,4 +20,7 @@ data class SurveyItem (
 
     @ManyToMany(mappedBy = "surveyitems_wh_chosen")
     val users_wh_chosen: MutableList<User> = mutableListOf()
+
+    @ManyToOne
+    val survey: Survey = Survey()
 }
