@@ -34,12 +34,16 @@ class JwtService {
             .parseSignedClaims(token)
             .payload
     }
+    val day_t: Long = 24*60*60*1000
+    val hour_t: Long = 60*60*1000
+    val min_t: Long = 60*1000
+    val sec_t: Long = 1000
     fun generateToken(user: User): String{
         return Jwts
             .builder()
             .subject(user.name)
             .issuedAt(Date(System.currentTimeMillis()))
-            .expiration(Date(System.currentTimeMillis()+24*60*60*1000))
+            .expiration(Date(System.currentTimeMillis()+10*min_t))
             .signWith(getSigningKey())
             .compact()
     }
