@@ -1,8 +1,8 @@
-package ro.sek1.RESTful.model.response
+package ro.sek1.RESTful.model.response.auth
 
 import ro.sek1.RESTful.model.Response
 
-data class AuthLoginResponse (
+data class AuthRegisterResponse (
     var token: String,
     var message: String,
 ): Response("authService")

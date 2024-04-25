@@ -1,4 +1,4 @@
-package ro.sek1.RESTful.model.request
+package ro.sek1.RESTful.model.request.auth
 
 data class AuthRegisterRequest (
     var username: String,

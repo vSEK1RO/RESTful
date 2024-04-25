@@ -8,6 +8,6 @@ import java.util.Optional
 
 @Repository
 interface TokenDao: JpaRepository<Token, Long> {
-    fun findByToken(token: String): Optional<Token>
+    fun findByHash(hash: String): Optional<Token>
     fun findAllByUser(user: User): MutableList<Token>
 }

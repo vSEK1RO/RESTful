@@ -2,23 +2,22 @@ package ro.sek1.RESTful.service
 
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.Authentication
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.RequestHeader
 import ro.sek1.RESTful.config.JwtService
+import ro.sek1.RESTful.config.sha256
 import ro.sek1.RESTful.database.dao.TokenDao
 import ro.sek1.RESTful.database.dao.UsersDao
 import ro.sek1.RESTful.database.entity.Token
 import ro.sek1.RESTful.database.entity.User
 import ro.sek1.RESTful.model.enums.UserRole
-import ro.sek1.RESTful.model.request.AuthLoginRequest
-import ro.sek1.RESTful.model.request.AuthRegisterRequest
-import ro.sek1.RESTful.model.request.AuthRegoutRequest
-import ro.sek1.RESTful.model.response.AuthLoginResponse
-import ro.sek1.RESTful.model.response.AuthLogoutResponse
-import ro.sek1.RESTful.model.response.AuthRegisterResponse
-import ro.sek1.RESTful.model.response.AuthRegoutResponse
+import ro.sek1.RESTful.model.request.auth.AuthLoginRequest
+import ro.sek1.RESTful.model.request.auth.AuthRegisterRequest
+import ro.sek1.RESTful.model.request.auth.AuthRegoutRequest
+import ro.sek1.RESTful.model.response.auth.AuthLoginResponse
+import ro.sek1.RESTful.model.response.auth.AuthLogoutResponse
+import ro.sek1.RESTful.model.response.auth.AuthRegisterResponse
+import ro.sek1.RESTful.model.response.auth.AuthRegoutResponse
 
 @Service
 class AuthService (
@@ -28,7 +27,7 @@ class AuthService (
     var jwtService: JwtService,
     var authenticationManager: AuthenticationManager,
 ){
-    fun authRegister(request: AuthRegisterRequest): AuthRegisterResponse {
+    fun register(request: AuthRegisterRequest): AuthRegisterResponse {
         if(!usersDao.findByName(request.username).isEmpty){
             return AuthRegisterResponse(
                 token = "nan",
@@ -54,18 +53,19 @@ class AuthService (
             role = UserRole.USER,
         )
         usersDao.save(user)
+        val pure_token = jwtService.generateToken(user)
         val token = Token(
-            token = jwtService.generateToken(user),
+            hash = pure_token.sha256(),
             loggedOut = false,
             user = user,
         )
         tokenDao.save(token)
         return AuthRegisterResponse(
-            token = token.token,
+            token = pure_token,
             message = "Register successful",
         )
     }
-    fun authRegout(request: AuthRegoutRequest): AuthRegoutResponse {
+    fun regout(request: AuthRegoutRequest): AuthRegoutResponse {
         authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(
                 request.username,
@@ -82,7 +82,7 @@ class AuthService (
             message = "Regout successful"
         )
     }
-    fun authLogin(request: AuthLoginRequest): AuthLoginResponse {
+    fun login(request: AuthLoginRequest): AuthLoginResponse {
         authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(
                 request.username,
@@ -95,20 +95,21 @@ class AuthService (
                 message = "User doesn't exist",
             )
         revokeAllTokensByUser(user)
+        val pure_token = jwtService.generateToken(user)
         val token = Token(
-            token = jwtService.generateToken(user),
+            hash = pure_token.sha256(),
             loggedOut = false,
             user = user,
         )
         tokenDao.save(token)
         return AuthLoginResponse(
-            token = token.token,
+            token = pure_token,
             message = "Login successful",
         )
     }
-    fun authLogout(token: String): AuthLogoutResponse {
-        val currentToken = tokenDao.findByToken(
-            token.substring(7)
+    fun logout(token: String): AuthLogoutResponse {
+        val currentToken = tokenDao.findByHash(
+            token.substring(7).sha256()
         ).orElse(null)
             ?: return AuthLogoutResponse(
                 message = "Token not found"

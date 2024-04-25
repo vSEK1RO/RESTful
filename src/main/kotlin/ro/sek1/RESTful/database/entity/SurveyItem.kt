@@ -21,5 +21,5 @@ data class SurveyItem (
     val id: Long = 0
 
     @ManyToMany(mappedBy = "surveyitems_wh_chosen")
-    val users_wh_chosen: MutableList<User> = mutableListOf()
+    var users_wh_chosen: MutableList<User> = mutableListOf()
 }

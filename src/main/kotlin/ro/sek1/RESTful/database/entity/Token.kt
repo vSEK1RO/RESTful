@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 @Table(name = "tokens")
 class Token (
     @Column(nullable = false)
-    var token: String = "",
+    var hash: String = "",
 
     @Column(nullable = false)
     var loggedOut: Boolean = false,

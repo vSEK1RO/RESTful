@@ -10,11 +10,7 @@ data class Survey (
     var title: String = "",
 
     @Column(nullable = false)
-    var number_avaible: Long = 0,
-
-    @OneToMany
-    @JoinColumn(name = "survey_id")
-    val items: MutableList<SurveyItem> = mutableListOf(),
+    var number_available: Long = 0,
 
     //nullable
 
@@ -25,7 +21,7 @@ data class Survey (
     var image_url: String? = null,
 
     @Column(columnDefinition = "timestamp")
-    var avaible_until: LocalDateTime? = null,
+    var available_until: LocalDateTime? = null,
 ){
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +30,10 @@ data class Survey (
     @Column(columnDefinition = "timestamp", nullable = false)
     val created_at: LocalDateTime = LocalDateTime.now()
 
+    @OneToMany
+    @JoinColumn(name = "survey_id")
+    var items: MutableList<SurveyItem> = mutableListOf()
+
     @ManyToMany(mappedBy = "surveys_wh_voted")
-    val users_wh_voted: MutableList<User> = mutableListOf()
+    var users_wh_voted: MutableList<User> = mutableListOf()
 }

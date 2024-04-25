@@ -1,4 +1,4 @@
-package ro.sek1.RESTful.model.response
+package ro.sek1.RESTful.model.response.health
 
 import ro.sek1.RESTful.model.Response
 
