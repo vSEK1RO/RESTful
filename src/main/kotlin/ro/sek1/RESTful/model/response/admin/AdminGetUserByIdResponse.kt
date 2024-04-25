@@ -1,8 +1,8 @@
 package ro.sek1.RESTful.model.response.admin
 
-import ro.sek1.RESTful.database.entity.User
 import ro.sek1.RESTful.model.Response
+import ro.sek1.RESTful.model.maps.MappedUser
 
 data class AdminGetUserByIdResponse(
-    var user: User?
+    var user: MappedUser?
 ): Response("adminService")

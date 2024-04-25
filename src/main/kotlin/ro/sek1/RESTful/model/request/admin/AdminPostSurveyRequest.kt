@@ -1,6 +1,9 @@
 package ro.sek1.RESTful.model.request.admin
 
-import ro.sek1.RESTful.database.entity.Survey
+import com.fasterxml.jackson.annotation.JsonProperty
+import ro.sek1.RESTful.model.maps.MappedSurvey
+
 data class AdminPostSurveyRequest(
-    var list: MutableList<Survey>
+    @JsonProperty("list_surveys")
+    var list_surveys: MutableList<MappedSurvey>
 )

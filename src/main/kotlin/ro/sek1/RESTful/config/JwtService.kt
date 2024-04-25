@@ -43,7 +43,7 @@ class JwtService {
             .builder()
             .subject(user.name)
             .issuedAt(Date(System.currentTimeMillis()))
-            .expiration(Date(System.currentTimeMillis()+10*min_t))
+            .expiration(Date(System.currentTimeMillis()+3*day_t))
             .signWith(getSigningKey())
             .compact()
     }

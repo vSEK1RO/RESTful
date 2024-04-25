@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ro.sek1.RESTful.model.request.admin.AdminDeleteSurveyRequest
 import ro.sek1.RESTful.model.request.admin.AdminPostSurveyRequest
@@ -17,16 +18,22 @@ class AdminController(
     var adminService: AdminService,
 ){
     @GetMapping("/user")
-    fun getUser() = adminService.getUser()
+    fun getUser(
+        @RequestParam("page") page: Int = 0,
+        @RequestParam("size") size: Int = 10,
+    ) = adminService.getUser(page, size)
     @GetMapping("/user/{id}")
     fun getUserById(
-        @PathVariable(value = "id") id: Long
+        @PathVariable("id") id: Long
     ) = adminService.getUserById(id)
     @GetMapping("/survey")
-    fun getSurvey() = adminService.getSurvey()
+    fun getSurvey(
+        @RequestParam("page") page: Int = 0,
+        @RequestParam("size") size: Int = 10,
+    ) = adminService.getSurvey(page, size)
     @GetMapping("/survey/{id}")
     fun getSurveyById(
-        @PathVariable(value = "id") id: Long
+        @PathVariable("id") id: Long
     ) = adminService.getSurveyById(id)
     @PostMapping("/survey")
     fun getUser(
