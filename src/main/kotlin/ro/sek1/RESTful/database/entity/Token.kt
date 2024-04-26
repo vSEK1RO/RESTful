@@ -24,4 +24,9 @@ class Token (
 
     @Column(columnDefinition = "timestamp", nullable = false)
     val created_at: LocalDateTime = LocalDateTime.now()
+
+    override fun equals(other: Any?): Boolean {
+        if(other !is Token)return false
+        return other.id == id
+    }
 }
