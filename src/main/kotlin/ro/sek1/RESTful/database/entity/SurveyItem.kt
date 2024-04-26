@@ -22,4 +22,9 @@ data class SurveyItem (
 
     @ManyToMany(mappedBy = "surveyitems_wh_chosen")
     var users_wh_chosen: MutableList<User> = mutableListOf()
+
+    override fun equals(other: Any?): Boolean {
+        if(other !is SurveyItem)return false
+        return other.id == id
+    }
 }
