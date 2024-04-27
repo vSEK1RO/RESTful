@@ -718,7 +718,7 @@
 					"response": []
 				},
 				{
-					"name": "/vote",
+					"name": "index/vote",
 					"event": [
 						{
 							"listen": "test",
@@ -756,11 +756,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/vote",
+							"raw": "{{url}}/index/vote",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"index",
 								"vote"
 							]
 						}
@@ -768,7 +769,7 @@
 					"response": []
 				},
 				{
-					"name": "/vote",
+					"name": "index/vote",
 					"event": [
 						{
 							"listen": "test",
@@ -797,11 +798,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/vote",
+							"raw": "{{url}}/index/vote",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"index",
 								"vote"
 							]
 						}
@@ -809,7 +811,7 @@
 					"response": []
 				},
 				{
-					"name": "/vote/{id}",
+					"name": "index/vote/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -838,11 +840,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/vote/1",
+							"raw": "{{url}}/index/vote/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"index",
 								"vote",
 								"1"
 							]
@@ -851,7 +854,7 @@
 					"response": []
 				},
 				{
-					"name": "/vote",
+					"name": "index/vote",
 					"event": [
 						{
 							"listen": "test",
@@ -889,11 +892,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/vote",
+							"raw": "{{url}}/index/vote",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"index",
 								"vote"
 							]
 						}

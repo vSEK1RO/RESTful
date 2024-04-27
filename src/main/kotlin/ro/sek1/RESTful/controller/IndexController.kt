@@ -7,7 +7,7 @@ import ro.sek1.RESTful.service.AdminService
 import ro.sek1.RESTful.service.IndexService
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/index")
 class IndexController (
     var indexService: IndexService,
     var adminService: AdminService,

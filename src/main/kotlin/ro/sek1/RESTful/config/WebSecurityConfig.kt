@@ -38,6 +38,8 @@ class WebSecurityConfig (
                     .permitAll()
                 it.requestMatchers("/admin/**")
                     .hasAuthority("ADMIN")
+                it.requestMatchers("/index/**")
+                    .hasAnyAuthority("ADMIN","USER")
                 it.anyRequest()
                     .permitAll()
             }
