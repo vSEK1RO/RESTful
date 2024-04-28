@@ -1,5 +1,6 @@
 package ro.sek1.RESTful.controller
 
+import io.micrometer.observation.annotation.Observed
 import org.springframework.web.bind.annotation.*
 import ro.sek1.RESTful.model.request.index.IndexDeleteVoteRequest
 import ro.sek1.RESTful.model.request.index.IndexPostVoteRequest
@@ -8,6 +9,7 @@ import ro.sek1.RESTful.service.IndexService
 
 @RestController
 @RequestMapping("/index")
+@Observed(name = "IndexController")
 class IndexController (
     var indexService: IndexService,
     var adminService: AdminService,

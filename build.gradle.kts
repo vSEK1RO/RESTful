@@ -33,10 +33,19 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
 	implementation("io.swagger.core.v3:swagger-annotations:2.2.21")
 	implementation("org.springdoc:springdoc-openapi-ui:1.8.0")
-	//JWT
+	// JWT
 	implementation("io.jsonwebtoken:jjwt-api:0.12.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5")
+	// Stats
+	implementation("org.springframework.boot:spring-boot-starter-actuator:3.2.5")
+	implementation("io.micrometer:micrometer-registry-prometheus:1.12.5")
+	// Observability
+	implementation("org.springframework:spring-aspects")
+	implementation("io.micrometer:micrometer-tracing-bridge-otel")
+	implementation("io.opentelemetry:opentelemetry-exporter-zipkin")
+	implementation("net.ttddyy.observation:datasource-micrometer-spring-boot:1.0.3")
+	runtimeOnly("com.github.loki4j:loki-logback-appender:1.3.2")
 }
 
 tasks.withType<KotlinCompile> {

@@ -19,13 +19,15 @@ class TestUser (
 ){
     @PostConstruct
     fun registerAdmin(){
-        usersDao.save(
-            User(
-                name = "root",
-                passhash = passwordEncoder.encode("root"),
-                role = UserRole.ADMIN,
+        if(!usersDao.existsByName("root")){
+            usersDao.save(
+                User(
+                    name = "root",
+                    passhash = passwordEncoder.encode("root"),
+                    role = UserRole.ADMIN,
+                )
             )
-        )
+        }
     }
 
     @PostConstruct

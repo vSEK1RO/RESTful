@@ -1,5 +1,6 @@
 package ro.sek1.RESTful.controller
 
+import io.micrometer.observation.annotation.Observed
 import org.springframework.web.bind.annotation.*
 import ro.sek1.RESTful.model.request.auth.AuthLoginRequest
 import ro.sek1.RESTful.model.request.auth.AuthRegisterRequest
@@ -8,6 +9,7 @@ import ro.sek1.RESTful.service.AuthService
 
 @RestController
 @RequestMapping("/auth")
+@Observed(name = "AuthController")
 class AuthController (
     var authService: AuthService,
 ){

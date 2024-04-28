@@ -12,4 +12,5 @@ interface UsersDao : JpaRepository<User, Long> {
     fun findByName(username: String): Optional<User>
     fun findByEmail(email: String): Optional<User>
     override fun findAll(pageable: Pageable): Page<User>
+    fun existsByName(name: String): Boolean
 }
